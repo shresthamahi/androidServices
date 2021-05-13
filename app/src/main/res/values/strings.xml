@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AndroidServices</string>
+    <string name="welcome">Welcome</string>
+    <string name="startService">Start Service</string>
+    <string name="stopService">Stop Service</string>
+    <string name="Notification">Generate Notification</string>
+</resources>
