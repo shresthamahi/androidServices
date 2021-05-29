@@ -4,7 +4,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -68,10 +67,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void startService() {
-        //startService(new Intent(this,NewService.class));
-        Intent serviceIntent = new Intent(this, NewService.class);
+        startService(new Intent(this,NewService.class));
         //startForegroundService(new Intent(this,NewService.class));
-        ContextCompat.startForegroundService(this,serviceIntent);
+
     }
     private void stopService() {
         stopService(new Intent(this,NewService.class));

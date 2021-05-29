@@ -24,6 +24,8 @@ public class NewService extends Service {
     public static final int notificationId=3;
     float lightLimit;
 
+    int LightInformed=0;
+
     private SensorManager sensorManager;
     Sensor lightSensor;
 
@@ -32,9 +34,16 @@ public class NewService extends Service {
         public void onSensorChanged(SensorEvent event) {
             float[] values = event.values;
             lightLimit=values[0];
-            if (lightLimit<10)
+            if (lightLimit<5)
             {
+                if (LightInformed==0){
                 addNotification();
+                LightInformed ++; }
+
+            }
+            else
+            {
+                LightInformed=0;
             }
         }
 
@@ -80,7 +89,7 @@ public class NewService extends Service {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("General Notification")
-                .setContentText("There is not enough light")
+                .setContentText("This is a regular notification")
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText("Monitoring is started"))
                 .setPriority(NotificationCompat.PRIORITY_LOW);
@@ -106,7 +115,7 @@ public class NewService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        //sensorManager.unregisterListener(lightListener); //this isn't causing trouble
+        sensorManager.unregisterListener(lightListener); //this isn't causing trouble
     }
 
     @Nullable
